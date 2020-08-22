@@ -1,0 +1,10 @@
+Flask_Cors==3.0.8
+Flask==1.0.2
+requests==2.24.0
+APScheduler==3.6.3
+numpy==1.17.4
+Werkzeug==0.14.1
+flask_swagger_ui==3.25.0
+pandas==0.24.2
+azure_storage==0.37.0
+scikit_learn==0.23.1
