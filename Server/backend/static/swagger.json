@@ -1,0 +1,232 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "Backend Information",
+    },
+    "servers": [
+        {
+          "url": "/"
+        }
+      ],
+      "tags": [
+        {
+          "name": "Authentication Related",
+          "description": "APIs relating to authentication"
+        }
+      ],
+      "paths": {
+        "/addUser": {
+            "post": {
+                "tags": [
+                  "Add User"
+                ],
+                "summary": "Create a new user and returns User Id",
+                "requestBody": {
+                  "username": "Username of the user",
+                  "password": "Password of the user",
+                  "required": true,
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/addUser"
+                      }
+                    }
+                  }
+                },
+                "produces": [
+                  "application/json"
+                ],
+                "responses": {
+                  "200": {
+                    "description": "OK",
+                    "schema": {
+                      "$ref": "#/components/schemas/addUser"
+                    }
+                  },
+                  "400": {
+                    "description": "Failed. Bad post data."
+                  }
+                }
+              }
+        },
+        "/signin": {
+            "post": {
+                "tags": [
+                  "Sign In"
+                ],
+                "summary": "Authenticate using a Username and Password",
+                "requestBody": {
+                  "username": "Username of the user",
+                  "password": "Password of the user",
+                  "required": true,
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/signin"
+                      }
+                    }
+                  }
+                },
+                "produces": [
+                  "application/json"
+                ],
+                "responses": {
+                  "200": {
+                    "description": "OK",
+                    "schema": {
+                      "$ref": "#/components/schemas/signin"
+                    }
+                  },
+                  "400": {
+                    "description": "Failed. Bad post data."
+                  }
+                }
+              }
+        },
+        "/getUserMetrics": {
+            "post": {
+                "tags": [
+                  "Retrieve User Metrics"
+                ],
+                "summary": "Returns the user level metrics",
+                "requestBody": {
+                  "userid": "Id of the authenticated user",
+                  "required": true,
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/getUserMetrics"
+                      }
+                    }
+                  }
+                },
+                "produces": [
+                  "application/json"
+                ],
+                "responses": {
+                  "200": {
+                    "description": "OK",
+                    "schema": {
+                      "$ref": "#/components/schemas/getUserMetrics"
+                    }
+                  },
+                  "400": {
+                    "description": "Failed. Bad post data."
+                  }
+                }
+              }
+            },
+            "/getDatasets": {
+                "get": {
+                  "tags": [
+                    "Retrieve metadata for all datasets"
+                  ],
+                  "summary": "Returns json file with datasets metadata",
+                  "responses": {
+                    "200": {
+                      "description": "OK",
+                      "schema": {
+                        "$ref": "#/components/schemas/getDatasets"
+                      }
+                    }
+                  }
+                }
+              },
+              "/newRequest": {
+                "post": {
+                    "tags": [
+                      "Create a new request"
+                    ],
+                    "summary": "Creates a new request",
+                    "requestBody": {
+                      "requestName": "Name of the request",
+                      "userId": "Id of the authenticated user",
+                      "datasetName": "Name of the requested dataset",
+                      "datasetId": "Id of the requested dataset",
+                      "datasetScope": "Scope of the dataset (personal/publicgroup)",
+                      "daysSelected": "Number of days for which data is requested",
+                      "required": true,
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/newRequest"
+                          }
+                        }
+                      }
+                    },
+                    "produces": [
+                      "application/json"
+                    ],
+                    "responses": {
+                      "200": {
+                        "description": "OK",
+                        "schema": {
+                          "$ref": "#/components/schemas/newRequest"
+                        }
+                      },
+                      "400": {
+                        "description": "Failed. Bad post data."
+                      }
+                    }
+                  }
+                },
+      },
+    "components": {
+      "schemas": {
+        "addUser": {
+          "properties": {
+            "username": {
+              "type": "string"
+            },
+            "password": {
+                "type": "string"
+            }
+          }
+        },
+        "signin": {
+            "properties": {
+              "username": {
+                "type": "string"
+              },
+              "password": {
+                  "type": "string"
+              }
+            }
+        },
+        "getUserMetrics": {
+            "properties": {
+              "userid": {
+                "type": "string"
+              }
+            }
+        },
+        "getDatasets": {
+            "properties": {
+            }
+        },
+        "newRequest": {
+            "properties": {
+              "requestName": {
+                "type": "string"
+              },
+              "userId": {
+                  "type": "string"
+              },
+              "datasetName": {
+                "type": "string"
+                },
+                "datasetId": {
+                    "type": "string"
+                },
+                "datasetScope": {
+                    "type": "string"
+                },
+                "daysSelected": {
+                    "type": "number"
+                }
+            }
+        }
+      }
+    }
+  }
